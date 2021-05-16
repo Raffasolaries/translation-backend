@@ -12,7 +12,6 @@ export class SubtitlesController {
   @Post()
   @UseInterceptors(FileInterceptor('file'))
   async uploadSubtitles(@UploadedFile() file: CreateSubtitleDto) {
-   
    return await this.subtitlesService.uploadSubtitles(file);
   }
 
