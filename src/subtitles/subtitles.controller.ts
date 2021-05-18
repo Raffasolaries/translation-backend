@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { FormDataRequest } from 'nestjs-form-data';
 import { Express } from 'express';
 import { SubtitlesService } from './subtitles.service';
 import { CreateSubtitleDto } from './dto/create-subtitle.dto';
@@ -10,9 +11,12 @@ export class SubtitlesController {
   constructor(private readonly subtitlesService: SubtitlesService) {}
 
   @Post()
-  @UseInterceptors(FileInterceptor('file'))
-  async uploadSubtitles(@UploadedFile() file: CreateSubtitleDto) {
-   return await this.subtitlesService.uploadSubtitles(file);
+  // @UseInterceptors(FileInterceptor('file'))
+  @FormDataRequest()
+  async uploadSubtitles(@Body() subtitlesObj: CreateSubtitleDto
+   //
+  ) {
+   return await this.subtitlesService.uploadSubtitles(subtitlesObj);
   }
 
   @Get()

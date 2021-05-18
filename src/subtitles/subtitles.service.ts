@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { TmsService } from '../tms/tms.service'; 
+import { Express } from 'express';
+import { TmsService } from '../tms/tms.service';
 import { CreateSubtitleDto } from './dto/create-subtitle.dto';
 import { UpdateSubtitleDto } from './dto/update-subtitle.dto';
 
@@ -7,13 +8,19 @@ import { UpdateSubtitleDto } from './dto/update-subtitle.dto';
 export class SubtitlesService {
  constructor(private readonly tmsService: TmsService) {}
 
- async uploadSubtitles(file: CreateSubtitleDto) {
+ async uploadSubtitles(subtitlesObj: CreateSubtitleDto) {
   // console.log('updloaded file', file['buffer'].toString());
-  const parsedFile = (file['buffer'] || '').toString()
+  const parsedFile = (subtitlesObj.file['buffer'] || '').toString()
    .split('\n')
    .map(line => { 
     return {
-     [line.split(/ (.+)/)[0]+' '+line.split(/ (.+)/)[1].slice(0, 27)]: line.split(/ (.+)/)[1].slice(27).trim().replace('.', '')
+     [line.split(/ (.+)/)[0]+' '+line.split(/ (.+)/)[1].slice(0, 27)]: line.split(/ (.+)/)[1].slice(27).trim()
+      // transformations
+      .replace('.', '')
+      .replace('-', 'ƒ-ƒ')
+      .replace(',', 'ƒ,ƒ')
+      .split('ƒ')
+      .map(elem => elem.trim())
     }
    });
    // .map(line => /] (.+)/.exec(line)[1]).map(line => line.replace('.', ''));

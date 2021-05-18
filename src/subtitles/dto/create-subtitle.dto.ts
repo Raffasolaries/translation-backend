@@ -1,9 +1,21 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsDefined } from 'class-validator';
+import { IsNotEmpty, IsDefined, IsString, Length, isMimeType } from 'class-validator';
+import { IsFile, MemoryStoredFile } from 'nestjs-form-data';
 import { Express } from 'express';
 
 export class CreateSubtitleDto {
  @IsDefined()
  @IsNotEmpty()
- file: Express.Multer.File
+ @IsFile()
+ file: MemoryStoredFile;
+
+ @IsDefined()
+ @IsString()
+ @Length(2)
+ sourceLanguage: string;
+
+ @IsDefined()
+ @IsString()
+ @Length(2)
+ targetLanguage: string;
 }
