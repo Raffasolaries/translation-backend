@@ -1,14 +1,16 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsDefined, IsString, Length, isMimeType } from 'class-validator';
-import { IsFile, MemoryStoredFile } from 'nestjs-form-data';
-// import { Express } from 'express';
 
-export class CreateSubtitleDto {
+export class UpdateTmsDto {
  @ApiProperty({ required: true })
  @IsDefined()
- @IsNotEmpty()
- @IsFile()
- file: MemoryStoredFile;
+ @IsString()
+ source: string;
+
+ @ApiProperty({ required: true })
+ @IsDefined()
+ @IsString()
+ target: string;
 
  @ApiProperty({ required: true })
  @IsDefined()

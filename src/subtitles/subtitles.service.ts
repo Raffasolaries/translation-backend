@@ -10,11 +10,14 @@ export class SubtitlesService {
 
  async uploadSubtitles(subtitlesObj: CreateSubtitleDto) {
   // console.log('updloaded file', file['buffer'].toString());
-  const parsedFile = (subtitlesObj.file['buffer'] || '').toString()
+  let parsedFile = (subtitlesObj.file['buffer'] || '').toString()
    .split('\n')
    .map(line => { 
     return {
-     [line.split(/ (.+)/)[0]+' '+line.split(/ (.+)/)[1].slice(0, 27)]: line.split(/ (.+)/)[1].slice(27).trim()
+     id: line.split(/ (.+)/)[0]+' '+line.split(/ (.+)/)[1].slice(0, 27),
+     sourceLanguage: subtitlesObj.sourceLanguage,
+     targetLanguage: subtitlesObj.targetLanguage,
+     text: line.split(/ (.+)/)[1].slice(27).trim()
       // transformations
       .replace('.', '')
       .replace('-', 'ƒ-ƒ')
@@ -23,23 +26,23 @@ export class SubtitlesService {
       .map(elem => elem.trim())
     }
    });
-   // .map(line => /] (.+)/.exec(line)[1]).map(line => line.replace('.', ''));
-  return await this.tmsService.translate(parsedFile);
+  parsedFile = await this.tmsService.translate(parsedFile);
+  return parsedFile;
  }
 
- findAll() {
-   return `This action returns all subtitles`;
- }
+ // findAll() {
+ //   return `This action returns all subtitles`;
+ // }
 
- findOne(id: number) {
-   return `This action returns a #${id} subtitle`;
- }
+ // findOne(id: number) {
+ //   return `This action returns a #${id} subtitle`;
+ // }
 
- update(id: number, updateSubtitleDto: UpdateSubtitleDto) {
-   return `This action updates a #${id} subtitle`;
- }
+ // update(id: number, updateSubtitleDto: UpdateSubtitleDto) {
+ //   return `This action updates a #${id} subtitle`;
+ // }
 
- remove(id: number) {
-   return `This action removes a #${id} subtitle`;
- }
+ // remove(id: number) {
+ //   return `This action removes a #${id} subtitle`;
+ // }
 }
