@@ -60,15 +60,22 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Swagger docs
+
+... after the application is running (not in production)
+N.B. here there's the local address
+
+[Swagger.docs](http://localhost:3000/docs)
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Author - [Raffaele Sollecito](https://github.com/Raffasolaries)
+- LinkedIn - [Raffaele Sollecito](https://www.linkedin.com/in/raffasolaries/)
+- Twitter - [Raffaele Sollecito](https://twitter.com/Raffasolaries)
 
 ## License
 
