@@ -12,14 +12,13 @@ import { join } from 'path';
       // transport: 'smtps://user@example.com:topsecret@smtp.example.com',
       // or
       transport: {
-        // host: config.get('MAIL_HOST'),
-        // port: config.get('MAIL_PORT'),
-        service: 'gmail',
-        secure: true,
-        auth: {
-          user: config.get('MAIL_USER'),
-          pass: config.get('MAIL_PASSWORD')
-        },
+       host: config.get('MAIL_HOST'),
+       port: config.get('MAIL_PORT'),
+       secure: true,
+       auth: {
+        user: config.get('MAIL_USER'),
+        pass: config.get('MAIL_PASSWORD')
+       }
       },
       defaults: {
         from: `"No Reply" <${config.get('MAIL_FROM')}>`,

@@ -13,7 +13,7 @@ export class MailService {
     template: './translation', // `.hbs` extension is appended automatically
     attachments: [{
      filename: 'translation.txt',
-     path: './'
+     path: './translation.txt'
     }],
     context: { // ✏️ filling curly brackets with content
       name: toEmail
