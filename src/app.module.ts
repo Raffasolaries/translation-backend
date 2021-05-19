@@ -14,6 +14,7 @@ import { MailModule } from './mail/mail.module';
    NestjsFormDataModule.config({ storage: MemoryStoredFile }),
    ConfigModule.forRoot({
     isGlobal: true, // no need to import into other modules
+    expandVariables: true
    }),
    TmsModule,
    MailModule

@@ -24,7 +24,12 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Translation REST API with historical data
+
+## Prerequisities
+[Docker](https://docs.docker.com/get-docker/)\
+[Node.js](http://nodejs.org)\
+[Nest.js](https://docs.nestjs.com)
 
 ## Installation
 
@@ -35,9 +40,6 @@ $ npm install
 ## Running the app
 
 ```bash
-# development
-$ npm run start
-
 # watch mode
 $ npm run start:dev
 
