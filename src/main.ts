@@ -12,6 +12,7 @@ async function bootstrap() {
 
     const document = SwaggerModule.createDocument(app, new DocumentBuilder()
       .setTitle('Translate API')
+      .setVersion('1.0')
       .setDescription('Translating Subtitles API')
       .build());
 

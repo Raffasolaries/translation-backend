@@ -1,12 +1,16 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import { TmsService } from '../tms/tms.service';
+import { MailService } from '../mail/mail.service';
 import { CreateSubtitleDto } from './dto/create-subtitle.dto';
 import { UpdateSubtitleDto } from './dto/update-subtitle.dto';
 
 @Injectable()
 export class SubtitlesService {
- constructor(private readonly tmsService: TmsService) {}
+ constructor(
+  private readonly tmsService: TmsService,
+  private readonly mailService: MailService
+ ) {}
 
  async uploadSubtitles(subtitlesObj: CreateSubtitleDto) {
   // console.log('updloaded file', file['buffer'].toString());
@@ -29,8 +33,14 @@ export class SubtitlesService {
   console.log('parsed file', parsedFile);
   const translation = await this.tmsService.translate(parsedFile);
   console.log('translated file', translation);
-  let newFile = translation.map(subtitle => subtitle.id+' '+subtitle.text.join(' ').replace(' ,', ',')).join('\n')
-  return newFile;
+  let newFile = translation.map(subtitle => subtitle.id+' '+subtitle.text.join(' ').replace(' ,', ',')).join('\n');
+  return new Promise((resolve, reject) => {
+   return fs.writeFile('./translation.txt', newFile, (err) => {
+    if (err) return reject(err);
+    return this.mailService.sendTranslationEmail('raffasolaries@gmail.com')
+     .then(sendEmailRes => resolve(sendEmailRes));
+   })
+  });
  }
 
  // findAll() {
