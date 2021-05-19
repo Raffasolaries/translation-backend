@@ -28,11 +28,12 @@ export class TmsService {
   return sentence;
  }
 
- async translate(parsedFile: TranslateTmsDto[]) {
+ async translate(source: TranslateTmsDto[]) {
   // search strings
-  for (let parsed of parsedFile) {
-   parsed.text.map(text => this.searchAndReplace(text, parsed.sourceLanguage, parsed.targetLanguage));
+  let result = source;
+  for (let parsed of result) {
+   parsed.text = parsed.text.map(sentence => this.searchAndReplace(sentence, parsed.sourceLanguage, parsed.targetLanguage));
   }
-  return parsedFile;
+  return result;
  }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Express } from 'express';
+import * as fs from 'fs';
 import { TmsService } from '../tms/tms.service';
 import { CreateSubtitleDto } from './dto/create-subtitle.dto';
 import { UpdateSubtitleDto } from './dto/update-subtitle.dto';
@@ -10,7 +10,7 @@ export class SubtitlesService {
 
  async uploadSubtitles(subtitlesObj: CreateSubtitleDto) {
   // console.log('updloaded file', file['buffer'].toString());
-  let parsedFile = (subtitlesObj.file['buffer'] || '').toString()
+  const parsedFile = (subtitlesObj.file['buffer'] || '').toString()
    .split('\n')
    .map(line => { 
     return {
@@ -26,8 +26,11 @@ export class SubtitlesService {
       .map(elem => elem.trim())
     }
    });
-  parsedFile = await this.tmsService.translate(parsedFile);
-  return parsedFile;
+  console.log('parsed file', parsedFile);
+  const translation = await this.tmsService.translate(parsedFile);
+  console.log('translated file', translation);
+  let newFile = translation.map(subtitle => subtitle.id+' '+subtitle.text.join(' ').replace(' ,', ',')).join('\n')
+  return newFile;
  }
 
  // findAll() {

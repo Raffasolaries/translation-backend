@@ -6,13 +6,15 @@ import { SubtitlesModule } from './subtitles/subtitles.module';
 import { TmsService } from './tms/tms.service';
 import { fromEventPattern } from 'rxjs';
 import { TmsModule } from './tms/tms.module';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
    SubtitlesModule,
    // NestjsFormDataModule
    NestjsFormDataModule.config({ storage: MemoryStoredFile }),
-   TmsModule
+   TmsModule,
+   MailModule
   ],
   controllers: [AppController],
   providers: [AppService, TmsService],
