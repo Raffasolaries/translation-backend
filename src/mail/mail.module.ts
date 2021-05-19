@@ -12,8 +12,9 @@ import { join } from 'path';
       // transport: 'smtps://user@example.com:topsecret@smtp.example.com',
       // or
       transport: {
-        host: config.get('MAIL_HOST'),
-        port: config.get('MAIL_PORT'),
+        // host: config.get('MAIL_HOST'),
+        // port: config.get('MAIL_PORT'),
+        service: 'gmail',
         secure: true,
         auth: {
           user: config.get('MAIL_USER'),
