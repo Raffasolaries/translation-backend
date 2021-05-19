@@ -9,8 +9,9 @@ import * as historicalData from '../../historical-data.json';
 export class TmsService {
  async update(translations: UpdateTmsDto[]) {
   return new Promise((resolve, reject) => {
+   console.log('historicalData', historicalData)
    let newContent = [...historicalData, ...translations];
-   return fs.writeFile('../../historical-data.json', JSON.stringify(newContent), (err) => {
+   return fs.writeFile('./historical-data.json', JSON.stringify(newContent), (err) => {
     if (err) return reject(err);
     return resolve(newContent);
    });
