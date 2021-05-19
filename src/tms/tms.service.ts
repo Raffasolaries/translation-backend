@@ -3,7 +3,7 @@ import * as levenshtein from 'fast-levenshtein';
 import * as fs from 'fs';
 import { TranslateTmsDto } from './dto/translate-tms.dto';
 import { UpdateTmsDto } from './dto/update-tms.dto';
-import * as historicalData from './historical-data.json';
+import * as historicalData from '../../historical-data.json';
 
 @Injectable()
 export class TmsService {
