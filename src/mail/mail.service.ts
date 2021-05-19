@@ -19,7 +19,19 @@ export class MailService {
       name: toEmail
     },
   })
-  .then(result => result)
-  .catch(error => error);
+  .then(result => { 
+   return {
+    status: 'OK',
+    error: null,
+    stack: result
+   }
+  })
+  .catch(error => {
+   return {
+    status: 'KO',
+    error: error,
+    stack: error
+   }
+  });
  }
 }
