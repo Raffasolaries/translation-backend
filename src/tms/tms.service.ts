@@ -3,7 +3,7 @@ import * as levenshtein from 'fast-levenshtein';
 import * as fs from 'fs';
 import { TranslateTmsDto } from './dto/translate-tms.dto';
 import { UpdateTmsDto } from './dto/update-tms.dto';
-import * as historicalData from '../../historical-data.json';
+import * as historicalData from './files/historical-data.json';
 
 @Injectable()
 export class TmsService {
@@ -11,7 +11,7 @@ export class TmsService {
   return new Promise((resolve, reject) => {
    console.log('historicalData', historicalData)
    let newContent = [...historicalData, ...translations];
-   return fs.writeFile('./historical-data.json', JSON.stringify(newContent), (err) => {
+   return fs.writeFile('./src/tms/files/historical-data.json', JSON.stringify(newContent), (err) => {
     if (err) return reject(err);
     return resolve(newContent);
    });
