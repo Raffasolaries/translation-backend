@@ -6,7 +6,6 @@ import { TmsModule } from './../src/tms/tms.module';
 import { TmsService } from './../src/tms/tms.service';
 import { UpdateTmsDto } from './../src/tms/dto/update-tms.dto';
 import { TranslateTmsDto } from './../src/tms/dto/translate-tms.dto';
-import { fromEventPattern } from 'rxjs';
 
 describe('TmsController (e2e)', () => {
   let app: INestApplication;

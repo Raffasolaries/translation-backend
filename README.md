@@ -141,6 +141,18 @@ Translation REST API with historical data
 
 ```bash
 $ npm install
+
+# Create .env file
+echo 'PORT=3000
+MODE=DEV
+# mail
+MAIL_HOST=smpt.example.com
+MAIL_PORT=465
+MAIL_USER=example@example.com
+MAIL_PASSWORD=yourpassword
+MAIL_FROM=example@example.com
+# optional
+MAIL_TRANSPORT=smtp://${MAIL_USER}:${MAIL_PASSWORD}@${MAIL_HOST}' >> .env
 ```
 
 ## Running the app
@@ -164,6 +176,18 @@ $ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
+```
+
+## Docker
+
+build the application on production and run it with Docker
+
+```bash
+# in the application folder
+$ docker build translation-backend .
+
+# after build is completed
+$ docker run -it -p 3000:3000 translation-backend:latest
 ```
 
 ## Swagger docs

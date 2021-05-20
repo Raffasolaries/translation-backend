@@ -30,9 +30,9 @@ export class SubtitlesService {
       .map(elem => elem.trim())
     }
    });
-  console.log('parsed file', parsedFile);
+  // console.log('parsed file', parsedFile);
   const translation = await this.tmsService.translate(parsedFile);
-  console.log('translated file', translation);
+  // console.log('translated file', translation);
   let newFile = translation.map(subtitle => subtitle.id+' '+subtitle.text.join(' ').replace(' ,', ',')).join('\n');
   return new Promise((resolve, reject) => {
    return fs.writeFile('./translation.txt', newFile, (err) => {
